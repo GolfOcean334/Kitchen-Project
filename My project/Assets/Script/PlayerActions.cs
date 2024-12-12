@@ -10,17 +10,14 @@ public class PlayerActions : MonoBehaviour
 
     private Rigidbody _Rigidbody;
 
-    private float speed = 6f;
-    private float lookSpeed = 0.5f;
+    private readonly float speed = 6f;
+    private readonly float lookSpeed = 0.5f;
     private float pitch = 0f;
 
     private void Awake()
     {
         _defaultInputActions = new DefaultInputActions();
         _Rigidbody = GetComponent<Rigidbody>();
-
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
     }
 
     private void OnEnable()
