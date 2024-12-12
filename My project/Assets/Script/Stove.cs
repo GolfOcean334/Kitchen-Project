@@ -7,7 +7,7 @@ public class Stove : MonoBehaviour
     
     void Update()
     {
-        PrintStoveSliderValue();
+        //PrintStoveSliderValue();
     }
 
     private void PrintStoveSliderValue()

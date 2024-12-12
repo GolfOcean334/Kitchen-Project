@@ -4,12 +4,12 @@ using UnityEngine.InputSystem;
 public class LockCursor : MonoBehaviour
 {
     private GameObject currentTarget;
-    private Camera camera;
+    private Camera _camera;
     private bool isCursorUnlocked = false;
 
     private void Awake()
     {
-        camera = Camera.main;
+        _camera = Camera.main;
         LockCursorToCenter();
     }
 
@@ -20,7 +20,7 @@ public class LockCursor : MonoBehaviour
 
     private void HandleCursorState()
     {
-        Ray ray = new Ray(camera.transform.position, camera.transform.forward);
+        Ray ray = new Ray(_camera.transform.position, _camera.transform.forward);
 
         if (Physics.Raycast(ray, out RaycastHit hit, 3f))
         {
@@ -33,7 +33,7 @@ public class LockCursor : MonoBehaviour
                     UnlockCursor();
                     Debug.Log("Canvas touché : interaction activée");
                 }
-                currentTarget = hitObject; // Met à jour la cible actuelle
+                currentTarget = hitObject;
             }
             else if (isCursorUnlocked)
             {
