@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: Recipe
+  m_EditorClassIdentifier: Assembly-CSharp::Recipe
+  title: Burger Classique
+  ingredients:
+  - 1 Pain Burger
+  - 2 Tranches de Tomate
+  - 1 Tranche de Fromage
+  - 1 Steak
+  - 1 Feuille de Laittue
+  - 10g de Beurre
+  instructions: "Couper le pain burger en deux moiti\xE9s \xE9gales. Faire fondre
+    le beurre dans une po\xEAle. Cuire le steak dans la po\xEAle chaude pendant 30s.
+    D\xE9poser la feuille de laitue sur la base du pain. Ajouter le steak chaud,
+    puis placer la tranche de fromage par-dessus. Ajouter les tranches de tomate.
+    Refermer avec la partie sup\xE9rieure du pain."
