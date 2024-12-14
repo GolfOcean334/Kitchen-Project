@@ -13,7 +13,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - PlayerUI
   - 
   - 
   - 
@@ -42,4 +42,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Book Layer
+    uniqueID: 2870108291
     locked: 0

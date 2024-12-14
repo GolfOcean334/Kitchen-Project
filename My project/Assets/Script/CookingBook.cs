@@ -24,6 +24,7 @@ public class CookingBook : MonoBehaviour
     public TMP_Text rightPageInstructions;
 
     public GameObject addRecipePanel;
+    public CanvasGroup bookCanvasGroup;
     public TMP_InputField inputTitle;
     public TMP_InputField inputIngredients;
     public TMP_InputField inputInstructions;
@@ -53,10 +54,6 @@ public class CookingBook : MonoBehaviour
 
     public void ShowAddRecipePanel()
     {
-        if (lockCursor != null)
-        {
-            lockCursor.notSyncCursor = false;
-        }
         if (playerActions != null)
         {
             playerActions.enabled = false;
@@ -64,19 +61,23 @@ public class CookingBook : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         addRecipePanel.SetActive(true);
+        if (bookCanvasGroup != null)
+        {
+            bookCanvasGroup.blocksRaycasts = false;
+        }
     }
 
     public void HideAddRecipePanel()
     {
-        if (lockCursor != null)
-        {
-            lockCursor.notSyncCursor = true;
-        }
         if (playerActions != null)
         {
             playerActions.enabled = true;
         }
         addRecipePanel.SetActive(false);
+        if (bookCanvasGroup != null)
+        {
+            bookCanvasGroup.blocksRaycasts = true;
+        }
         ClearInputFields();
     }
 
