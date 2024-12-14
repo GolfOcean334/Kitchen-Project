@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEditor;
 
 [CreateAssetMenu(fileName = "Recipe", menuName = "Cooking/Recipe")]
 public class Recipe : ScriptableObject
@@ -30,26 +31,16 @@ public class CookingBook : MonoBehaviour
     public TMP_InputField inputInstructions;
 
     public PlayerActions playerActions;
-    public LockCursor lockCursor;
+
+    public Object saveFolder; // Drag-and-drop folder in the inspector
 
     private int currentPage = 0;
 
     private void Start()
     {
-        LoadPreloadedRecipes();
+        LoadRecipes();
         UpdateDisplay();
         addRecipePanel.SetActive(false);
-    }
-
-    private void LoadPreloadedRecipes()
-    {
-        foreach (var recipe in preloadedRecipes)
-        {
-            if (recipe != null && !recipes.Contains(recipe))
-            {
-                recipes.Add(recipe);
-            }
-        }
     }
 
     public void ShowAddRecipePanel()
@@ -83,20 +74,57 @@ public class CookingBook : MonoBehaviour
 
     public void SaveNewRecipe()
     {
-        string title = inputTitle.text;
-        string ingredientsText = inputIngredients.text;
-        string instructions = inputInstructions.text;
+        string title = inputTitle.text.Trim();
+        string ingredientsText = inputIngredients.text.Trim();
+        string instructions = inputInstructions.text.Trim();
 
-        if (!string.IsNullOrEmpty(title) && !string.IsNullOrEmpty(ingredientsText) && !string.IsNullOrEmpty(instructions))
+        if (!ValidateRecipe(title, ingredientsText, instructions))
         {
-            Recipe newRecipe = ScriptableObject.CreateInstance<Recipe>();
-            newRecipe.title = title;
-            newRecipe.ingredients = new List<string>(ingredientsText.Split('\n'));
-            newRecipe.instructions = instructions;
+            Debug.LogError("Invalid recipe data. Please fill in all fields correctly.");
+            return;
+        }
 
-            recipes.Add(newRecipe);
-            UpdateDisplay();
-            HideAddRecipePanel();
+        Recipe newRecipe = ScriptableObject.CreateInstance<Recipe>();
+        newRecipe.title = title;
+        newRecipe.ingredients = new List<string>(ingredientsText.Split('\n'));
+        newRecipe.instructions = instructions;
+
+        string folderPath = AssetDatabase.GetAssetPath(saveFolder);
+        if (string.IsNullOrEmpty(folderPath) || !AssetDatabase.IsValidFolder(folderPath))
+        {
+            Debug.LogError("Save folder is not valid. Please set a valid folder in the inspector.");
+            return;
+        }
+
+        string uniquePath = AssetDatabase.GenerateUniqueAssetPath(folderPath + "/" + title + ".asset");
+        AssetDatabase.CreateAsset(newRecipe, uniquePath);
+        AssetDatabase.SaveAssets();
+        AssetDatabase.Refresh();
+
+        recipes.Add(newRecipe);
+        UpdateDisplay();
+        HideAddRecipePanel();
+    }
+
+    private bool ValidateRecipe(string title, string ingredientsText, string instructions)
+    {
+        if (string.IsNullOrEmpty(title)) return false;
+        if (string.IsNullOrEmpty(ingredientsText)) return false;
+        if (string.IsNullOrEmpty(instructions)) return false;
+
+        return true;
+    }
+
+    private void LoadRecipes()
+    {
+        recipes.Clear();
+        Recipe[] loadedRecipes = Resources.LoadAll<Recipe>("Recipes");
+        foreach (var recipe in loadedRecipes)
+        {
+            if (!recipes.Contains(recipe))
+            {
+                recipes.Add(recipe);
+            }
         }
     }
 
