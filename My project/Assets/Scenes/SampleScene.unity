@@ -4659,7 +4659,7 @@ GameObject:
   - component: {fileID: 1514519846}
   - component: {fileID: 1514519845}
   m_Layer: 0
-  m_Name: Input Manager
+  m_Name: Script Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

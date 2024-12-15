@@ -12,6 +12,6 @@ public class Stove : MonoBehaviour
 
     private void PrintStoveSliderValue()
     {
-        Debug.Log((int)stoveSlider.value + " °C");
+        //Debug.Log((int)stoveSlider.value + " °C");
     }
 }
