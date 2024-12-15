@@ -3,14 +3,6 @@ using UnityEngine;
 using TMPro;
 using UnityEditor;
 
-[CreateAssetMenu(fileName = "Recipe", menuName = "Cooking/Recipe")]
-public class Recipe : ScriptableObject
-{
-    public string title;
-    public List<string> ingredients;
-    public string instructions;
-}
-
 public class CookingBook : MonoBehaviour
 {
     public List<Recipe> preloadedRecipes;
@@ -32,7 +24,7 @@ public class CookingBook : MonoBehaviour
 
     public PlayerActions playerActions;
 
-    public Object saveFolder; // Drag-and-drop folder in the inspector
+    public Object saveFolder;
 
     private int currentPage = 0;
 
@@ -86,7 +78,7 @@ public class CookingBook : MonoBehaviour
 
         Recipe newRecipe = ScriptableObject.CreateInstance<Recipe>();
         newRecipe.title = title;
-        newRecipe.ingredients = new List<string>(ingredientsText.Split('\n'));
+        newRecipe.ingredients = new List<string>(ingredientsText.Split(' '));
         newRecipe.instructions = instructions;
 
         string folderPath = AssetDatabase.GetAssetPath(saveFolder);

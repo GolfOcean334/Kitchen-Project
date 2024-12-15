@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: jhjhj
-  m_EditorClassIdentifier: Assembly-CSharp::Recipe
-  title: jhjhj
+  m_Script: {fileID: 11500000, guid: 81784581b0a78d846a17ddfd49ec0ee8, type: 3}
+  m_Name: usfgy
+  m_EditorClassIdentifier: 
+  title: usfgy
   ingredients:
-  - fxthxfth
-  instructions: wdthwdh
+  - srgfsef
+  instructions: fesfesf
