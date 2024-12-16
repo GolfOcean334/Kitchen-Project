@@ -1,15 +1,19 @@
 using UnityEngine;
+using TMPro;
 
 public class PickupHandler : MonoBehaviour
 {
-    public Transform rightHand;
-    public Transform leftHand;
+    [SerializeField] private Transform rightHand;
+    [SerializeField] private Transform leftHand;
 
-    public Camera playerCamera;
+    [SerializeField] private GameObject imgRightHand;
+    [SerializeField] private GameObject imgLeftHand;
+
+    [SerializeField] private Camera playerCamera;
     private GameObject rightHandObject;
     private GameObject leftHandObject;
 
-    public HighlightHandler highlightHandler;
+    [SerializeField] private HighlightHandler highlightHandler;
 
     private void Update()
     {
@@ -36,10 +40,12 @@ public class PickupHandler : MonoBehaviour
         if (rightHandObject == null)
         {
             AttachObjectToHand(obj, rightHand, ref rightHandObject);
+            imgRightHand.SetActive(false);
         }
         else if (leftHandObject == null)
         {
             AttachObjectToHand(obj, leftHand, ref leftHandObject);
+            imgLeftHand.SetActive(false);
         }
         else
         {

@@ -6,7 +6,7 @@ public class HighlightHandler : MonoBehaviour
     private Camera _camera;
 
     private Color _originalColor;
-    public Color highlightColor;
+    [SerializeField] private Color highlightColor;
 
     private void Awake()
     {
