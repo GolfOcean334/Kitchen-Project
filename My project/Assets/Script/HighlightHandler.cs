@@ -46,7 +46,7 @@ public class HighlightHandler : MonoBehaviour
         }
     }
 
-    private void ApplyHighlight(GameObject target)
+    public void ApplyHighlight(GameObject target)
     {
         Renderer renderer = target.GetComponent<Renderer>();
         if (renderer != null)
@@ -66,6 +66,17 @@ public class HighlightHandler : MonoBehaviour
                 renderer.material.color = _originalColor / 3;
             }
             _currentTarget = null;
+        }
+    }
+    public void RemoveHighlight(GameObject target)
+    {
+        if (target != null)
+        {
+            Renderer renderer = target.GetComponent<Renderer>();
+            if (renderer != null)
+            {
+                renderer.material.color = _originalColor;
+            }
         }
     }
     public GameObject GetCurrentTarget()

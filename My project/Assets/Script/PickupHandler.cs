@@ -50,7 +50,7 @@ public class PickupHandler : MonoBehaviour
         if (target != null)
         {
             PickupObject(target);
-            highlightHandler.ClearHighlight();
+            highlightHandler.RemoveHighlight(target);
         }
     }
 
@@ -104,5 +104,15 @@ public class PickupHandler : MonoBehaviour
                             + playerCamera.transform.forward * 0.6f
                             + playerCamera.transform.up * verticalOffset;
         leftHand.rotation = playerCamera.transform.rotation;
+    }
+
+    public GameObject GetRightHandObject()
+    {
+        return rightHandObject;
+    }
+
+    public GameObject GetLeftHandObject()
+    {
+        return leftHandObject;
     }
 }
