@@ -114,4 +114,38 @@ public class PickupHandler : MonoBehaviour
     {
         return leftHandObject;
     }
+
+    public void ClearRightHandObject()
+    {
+        if (rightHandObject != null)
+        {
+            DetachObject(rightHandObject);
+            rightHandObject = null;
+            imgRightHand.SetActive(true);
+        }
+    }
+
+    public void ClearLeftHandObject()
+    {
+        if (leftHandObject != null)
+        {
+            DetachObject(leftHandObject);
+            leftHandObject = null;
+            imgLeftHand.SetActive(true);
+        }
+    }
+
+    private void DetachObject(GameObject obj)
+    {
+        obj.transform.SetParent(null);
+
+        Rigidbody rb = obj.GetComponent<Rigidbody>();
+        if (rb != null) rb.isKinematic = false;
+
+        Collider[] colliders = obj.GetComponents<Collider>();
+        foreach (var collider in colliders)
+        {
+            collider.enabled = true;
+        }
+    }
 }

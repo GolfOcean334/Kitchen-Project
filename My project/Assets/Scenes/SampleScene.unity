@@ -9682,6 +9682,7 @@ GameObject:
   - component: {fileID: 1514519848}
   - component: {fileID: 1514519847}
   - component: {fileID: 1514519849}
+  - component: {fileID: 1514519850}
   m_Layer: 0
   m_Name: Script Manager
   m_TagString: Untagged
@@ -9780,6 +9781,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pickupHandler: {fileID: 1514519848}
   highlightHandler: {fileID: 1514519847}
+  currentMainHandIndex: 0
+  currentMainHandObject: {fileID: 0}
+--- !u!114 &1514519850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1514519844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dee5eea34972ecd4cb38da3e55c4ebc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainHand: {fileID: 1514519849}
+  highlightHandler: {fileID: 1514519847}
+  pickupHandler: {fileID: 1514519848}
 --- !u!1 &1524842999
 GameObject:
   m_ObjectHideFlags: 0

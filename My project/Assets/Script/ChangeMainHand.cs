@@ -6,8 +6,8 @@ public class ChangeMainHand : MonoBehaviour
     [SerializeField] private PickupHandler pickupHandler;
     [SerializeField] private HighlightHandler highlightHandler;
 
-    private int currentMainHandIndex = 0;
-    private GameObject currentMainHandObject;
+    public int currentMainHandIndex = 0;
+    public GameObject currentMainHandObject;
 
     private PlayerInput playerInput;
     private InputAction changeMainHandAction;
