@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class ChangeMainHand : MonoBehaviour
 {
@@ -10,15 +9,31 @@ public class ChangeMainHand : MonoBehaviour
     private int currentMainHandIndex = 0;
     private GameObject currentMainHandObject;
 
+    private PlayerInput playerInput;
+    private InputAction changeMainHandAction;
+
+    private void Awake()
+    {
+        playerInput = new PlayerInput();
+        changeMainHandAction = playerInput.Player.ChangeMainHand;
+    }
+    private void OnEnable()
+    {
+        changeMainHandAction.Enable();
+    }
+    private void OnDisable()
+    {
+        changeMainHandAction.Disable();
+    }
     private void Update()
     {
-        float scrollValue = Input.mouseScrollDelta.y;
+        Vector2 scrollDelta = changeMainHandAction.ReadValue<Vector2>();
 
-        if (scrollValue > 0)
+        if (scrollDelta.y > 0)
         {
             SetMainHand(0);
         }
-        else if (scrollValue < 0)
+        else if (scrollDelta.y < 0)
         {
             SetMainHand(1);
         }
