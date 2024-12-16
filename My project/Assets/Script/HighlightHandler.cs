@@ -6,7 +6,7 @@ public class HighlightHandler : MonoBehaviour
     private Camera _camera;
 
     private Color _originalColor;
-    public Color highlightColor = Color.white;
+    private Color highlightColor = Color.white;
 
     private void Awake()
     {
@@ -46,7 +46,7 @@ public class HighlightHandler : MonoBehaviour
         }
     }
 
-    private void ApplyHighlight(GameObject target)
+    public void ApplyHighlight(GameObject target)
     {
         Renderer renderer = target.GetComponent<Renderer>();
         if (renderer != null)
@@ -56,7 +56,7 @@ public class HighlightHandler : MonoBehaviour
         }
     }
 
-    private void ClearHighlight()
+    public void ClearHighlight()
     {
         if (_currentTarget != null)
         {
@@ -67,5 +67,10 @@ public class HighlightHandler : MonoBehaviour
             }
             _currentTarget = null;
         }
+    }
+
+    public GameObject GetCurrentTarget()
+    {
+        return _currentTarget;
     }
 }
