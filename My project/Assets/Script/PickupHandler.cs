@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.InputSystem;
 
 public class PickupHandler : MonoBehaviour
 {
@@ -15,13 +16,31 @@ public class PickupHandler : MonoBehaviour
 
     [SerializeField] private HighlightHandler highlightHandler;
 
+    private PlayerInput playerInput;
+    private InputAction pickupAction;
+
+    private void Awake()
+    {
+        playerInput = new PlayerInput();
+        pickupAction = playerInput.Player.Pickup;
+    }
+    private void OnEnable()
+    {
+        pickupAction.Enable();
+        pickupAction.performed += OnPickupPerformed;
+    }
+
+    private void OnDisable()
+    {
+        pickupAction.Disable();
+        pickupAction.performed -= OnPickupPerformed;
+    }
+    private void OnPickupPerformed(InputAction.CallbackContext context)
+    {
+        TryPickupObject();
+    }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            TryPickupObject();
-        }
-
         UpdateHandPositions();
     }
 
