@@ -35,6 +35,8 @@ public class Stove : MonoBehaviour
                 particleEmission.enabled = true;
                 particleMain.startSpeed = Mathf.Lerp(1f, 5f, stoveSlider.value / stoveSlider.maxValue);
 
+                particleMain.startLifetime = Mathf.Lerp(0.1f, 0.15f, stoveSlider.value / stoveSlider.maxValue);
+
                 particleMain.startColor = Color.Lerp(Color.yellow, Color.red, stoveSlider.value / stoveSlider.maxValue);
 
                 particleEmission.rateOverTime = Mathf.Lerp(10f, 50f, stoveSlider.value / stoveSlider.maxValue);

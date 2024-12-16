@@ -55,7 +55,6 @@ public class PickupHandler : MonoBehaviour
 
     private void AttachObjectToHand(GameObject obj, Transform hand, ref GameObject handObject)
     {
-        // Disable physics (kinematic)
         Rigidbody rb = obj.GetComponent<Rigidbody>();
         if (rb != null) rb.isKinematic = true;
 
@@ -66,7 +65,6 @@ public class PickupHandler : MonoBehaviour
             collider.enabled = false;
         }
 
-        // Attach object to the hand
         obj.transform.SetParent(hand);
         obj.transform.localPosition = Vector3.zero;
         obj.transform.localRotation = Quaternion.identity;
