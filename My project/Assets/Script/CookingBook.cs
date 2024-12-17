@@ -5,26 +5,26 @@ using UnityEditor;
 
 public class CookingBook : MonoBehaviour
 {
-    public List<Recipe> preloadedRecipes;
-    public List<Recipe> recipes = new List<Recipe>();
+    [SerializeField] private List<Recipe> preloadedRecipes;
+    [SerializeField] private List<Recipe> recipes = new List<Recipe>();
 
-    public TMP_Text leftPageTitle;
-    public TMP_Text leftPageIngredients;
-    public TMP_Text leftPageInstructions;
+    [SerializeField] private TMP_Text leftPageTitle;
+    [SerializeField] private TMP_Text leftPageIngredients;
+    [SerializeField] private TMP_Text leftPageInstructions;
 
-    public TMP_Text rightPageTitle;
-    public TMP_Text rightPageIngredients;
-    public TMP_Text rightPageInstructions;
+    [SerializeField] private TMP_Text rightPageTitle;
+    [SerializeField] private TMP_Text rightPageIngredients;
+    [SerializeField] private TMP_Text rightPageInstructions;
 
-    public GameObject addRecipePanel;
-    public CanvasGroup bookCanvasGroup;
-    public TMP_InputField inputTitle;
-    public TMP_InputField inputIngredients;
-    public TMP_InputField inputInstructions;
+    [SerializeField] private GameObject addRecipePanel;
+    [SerializeField] private CanvasGroup bookCanvasGroup;
+    [SerializeField] private TMP_InputField inputTitle;
+    [SerializeField] private TMP_InputField inputIngredients;
+    [SerializeField] private TMP_InputField inputInstructions;
 
-    public PlayerActions playerActions;
+    [SerializeField] private PlayerActions playerActions;
 
-    public Object saveFolder;
+    [SerializeField] private Object saveFolder;
 
     private int currentPage = 0;
 
@@ -78,7 +78,7 @@ public class CookingBook : MonoBehaviour
 
         Recipe newRecipe = ScriptableObject.CreateInstance<Recipe>();
         newRecipe.title = title;
-        newRecipe.ingredients = new List<string>(ingredientsText.Split(' '));
+        newRecipe.ingredients = new List<string>(ingredientsText.Split(','));
         newRecipe.instructions = instructions;
 
         string folderPath = AssetDatabase.GetAssetPath(saveFolder);

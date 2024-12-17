@@ -14,6 +14,8 @@ public class OpenContainerHandler : MonoBehaviour
     private InputAction openContainer;
     private InputAction closeContainer;
 
+    [SerializeField] private PlayerActions playerActions;
+
     private void Awake()
     {
         playerInput = new PlayerInput();
@@ -85,6 +87,12 @@ public class OpenContainerHandler : MonoBehaviour
     {
         if (_currentTarget != null)
         {
+            if (playerActions != null)
+            {
+                playerActions.enabled = false;
+            }
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
             ShowUIContainer();
         }
     }

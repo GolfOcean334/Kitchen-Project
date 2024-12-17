@@ -10,9 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 81784581b0a78d846a17ddfd49ec0ee8, type: 3}
-  m_Name: drgdrg
+  m_Name: "Salade Compos\xE9e"
   m_EditorClassIdentifier: 
-  title: drgdrg
+  title: "Salade Compos\xE9e"
   ingredients:
-  - dgdrgdthdt
-  instructions: htdfhftjfth
+  - 1 laitue
+  - ' 2 tomates'
+  - ' 1 concombre'
+  - ' 1 carotte'
+  - ' 1 oeuf'
+  - ' 1 fromage'
+  instructions: "D\xE9couper les l\xE9gumes. Faites cuire l'oeuf. Assembler le tous
+    dans un saladier. Server dans une assiette."
