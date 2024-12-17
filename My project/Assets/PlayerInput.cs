@@ -71,6 +71,24 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""ContainerOpen"",
+                    ""type"": ""Button"",
+                    ""id"": ""57f60ba0-5ba2-442d-ba80-10f2f4cb6d46"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ContainerClose"",
+                    ""type"": ""Button"",
+                    ""id"": ""dfa3a8e3-6f48-4ba7-9d25-c76d309db1ce"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -302,6 +320,50 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Joystick"",
                     ""action"": ""ChangeMainHand"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7b7ef60a-f0dd-45fe-9c88-eb7b068c2839"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""ContainerOpen"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d2a76688-9a94-437e-8238-a0f516eaa6ef"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""ContainerOpen"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b2c46305-c156-4541-b00a-52374720f816"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""ContainerClose"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""11d200c1-be19-4345-88f4-438067e41cb9"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""ContainerClose"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -894,6 +956,8 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_Player_Pickup = m_Player.FindAction("Pickup", throwIfNotFound: true);
         m_Player_Drop = m_Player.FindAction("Drop", throwIfNotFound: true);
         m_Player_ChangeMainHand = m_Player.FindAction("ChangeMainHand", throwIfNotFound: true);
+        m_Player_ContainerOpen = m_Player.FindAction("ContainerOpen", throwIfNotFound: true);
+        m_Player_ContainerClose = m_Player.FindAction("ContainerClose", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -972,6 +1036,8 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Pickup;
     private readonly InputAction m_Player_Drop;
     private readonly InputAction m_Player_ChangeMainHand;
+    private readonly InputAction m_Player_ContainerOpen;
+    private readonly InputAction m_Player_ContainerClose;
     public struct PlayerActions
     {
         private @PlayerInput m_Wrapper;
@@ -981,6 +1047,8 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         public InputAction @Pickup => m_Wrapper.m_Player_Pickup;
         public InputAction @Drop => m_Wrapper.m_Player_Drop;
         public InputAction @ChangeMainHand => m_Wrapper.m_Player_ChangeMainHand;
+        public InputAction @ContainerOpen => m_Wrapper.m_Player_ContainerOpen;
+        public InputAction @ContainerClose => m_Wrapper.m_Player_ContainerClose;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1005,6 +1073,12 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @ChangeMainHand.started += instance.OnChangeMainHand;
             @ChangeMainHand.performed += instance.OnChangeMainHand;
             @ChangeMainHand.canceled += instance.OnChangeMainHand;
+            @ContainerOpen.started += instance.OnContainerOpen;
+            @ContainerOpen.performed += instance.OnContainerOpen;
+            @ContainerOpen.canceled += instance.OnContainerOpen;
+            @ContainerClose.started += instance.OnContainerClose;
+            @ContainerClose.performed += instance.OnContainerClose;
+            @ContainerClose.canceled += instance.OnContainerClose;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -1024,6 +1098,12 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @ChangeMainHand.started -= instance.OnChangeMainHand;
             @ChangeMainHand.performed -= instance.OnChangeMainHand;
             @ChangeMainHand.canceled -= instance.OnChangeMainHand;
+            @ContainerOpen.started -= instance.OnContainerOpen;
+            @ContainerOpen.performed -= instance.OnContainerOpen;
+            @ContainerOpen.canceled -= instance.OnContainerOpen;
+            @ContainerClose.started -= instance.OnContainerClose;
+            @ContainerClose.performed -= instance.OnContainerClose;
+            @ContainerClose.canceled -= instance.OnContainerClose;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -1211,6 +1291,8 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         void OnPickup(InputAction.CallbackContext context);
         void OnDrop(InputAction.CallbackContext context);
         void OnChangeMainHand(InputAction.CallbackContext context);
+        void OnContainerOpen(InputAction.CallbackContext context);
+        void OnContainerClose(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

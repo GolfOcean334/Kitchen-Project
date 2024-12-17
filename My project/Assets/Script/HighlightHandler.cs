@@ -22,7 +22,7 @@ public class HighlightHandler : MonoBehaviour
     {
         Ray ray = new Ray(_camera.transform.position, _camera.transform.forward);
 
-        if (Physics.Raycast(ray, out RaycastHit hit, 3f))
+        if (Physics.Raycast(ray, out RaycastHit hit, 2f))
         {
             GameObject hitObject = hit.collider.gameObject;
 
