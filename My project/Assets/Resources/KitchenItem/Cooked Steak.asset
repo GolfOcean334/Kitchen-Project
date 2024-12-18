@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a17a2ed1e6887e4488c385ac01e7435a, type: 3}
-  m_Name: Sausage
+  m_Name: Cooked Steak
   m_EditorClassIdentifier: 
-  ingredientName: Saucisse
-  ingredientDescription: C'est une saucisse !
-  prefab: {fileID: 3062012631162009370, guid: ab80ca41dbe0c854ea6ce03c20029c2e, type: 3}
-  image: {fileID: 21300000, guid: 1a82cd5263377a9459f82172afd1e30b, type: 3}
+  ingredientName: Steak Cuit
+  ingredientDescription: "Cuit \xE0 point."
+  prefab: {fileID: 5182101408359990397, guid: 1cadb7e9b63d1484db6a657066fdcd48, type: 3}
+  image: {fileID: 21300000, guid: fcab7347a0309f14291ae745098b6732, type: 3}

@@ -3,15 +3,15 @@ using UnityEngine.InputSystem;
 
 public class PickupHandler : MonoBehaviour
 {
-    [SerializeField] private Transform rightHand;
-    [SerializeField] private Transform leftHand;
+    [SerializeField] public Transform rightHand;
+    [SerializeField] public Transform leftHand;
 
     [SerializeField] private GameObject imgRightHand;
     [SerializeField] private GameObject imgLeftHand;
 
     [SerializeField] private Camera playerCamera;
-    private GameObject rightHandObject;
-    private GameObject leftHandObject;
+    public GameObject rightHandObject;
+    public GameObject leftHandObject;
 
     [SerializeField] private HighlightHandler highlightHandler;
 
@@ -74,7 +74,7 @@ public class PickupHandler : MonoBehaviour
         }
     }
 
-    private void AttachObjectToHand(GameObject obj, Transform hand, ref GameObject handObject)
+    public void AttachObjectToHand(GameObject obj, Transform hand, ref GameObject handObject)
     {
         Rigidbody rb = obj.GetComponent<Rigidbody>();
         if (rb != null) rb.isKinematic = true;
