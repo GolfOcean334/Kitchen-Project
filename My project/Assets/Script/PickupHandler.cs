@@ -49,6 +49,9 @@ public class PickupHandler : MonoBehaviour
         if (target != null)
         {
             PickupObject(target);
+
+            Rigidbody rb = target.GetComponent<Rigidbody>();
+            rb.constraints = RigidbodyConstraints.None;
             highlightHandler.RemoveHighlight(target);
         }
     }
