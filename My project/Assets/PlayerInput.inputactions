@@ -67,6 +67,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "PlaceObjectInRecipient",
+                    "type": "Button",
+                    "id": "c6f5da90-89ce-4e34-bb4d-dfd07570ebe2",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -342,6 +351,28 @@
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "ContainerClose",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c7b20d03-8af8-49e3-b96f-842316447c01",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "PlaceObjectInRecipient",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3c4294e5-430e-416c-b716-2fb4032f51f8",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "PlaceObjectInRecipient",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
