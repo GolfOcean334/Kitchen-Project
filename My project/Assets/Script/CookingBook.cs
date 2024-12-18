@@ -46,7 +46,7 @@ public class CookingBook : MonoBehaviour
     }
     private void Start()
     {
-        LoadRecipes();
+        LoadRecipesFromJSON();
         UpdateDisplay();
         addRecipePanel.SetActive(false);
     }
@@ -99,27 +99,64 @@ public class CookingBook : MonoBehaviour
             return;
         }
 
-        Recipe newRecipe = ScriptableObject.CreateInstance<Recipe>();
-        newRecipe.title = title;
-        newRecipe.ingredients = new List<string>(ingredientsText.Split(','));
-        newRecipe.instructions = instructions;
-
-        string folderPath = AssetDatabase.GetAssetPath(saveFolder);
-        if (string.IsNullOrEmpty(folderPath) || !AssetDatabase.IsValidFolder(folderPath))
+        Recipe newRecipe = new Recipe
         {
-            Debug.LogError("Save folder is not valid. Please set a valid folder in the inspector.");
-            return;
-        }
-
-        string uniquePath = AssetDatabase.GenerateUniqueAssetPath(folderPath + "/" + title + ".asset");
-        AssetDatabase.CreateAsset(newRecipe, uniquePath);
-        AssetDatabase.SaveAssets();
-        AssetDatabase.Refresh();
+            title = title,
+            ingredients = new List<string>(ingredientsText.Split(',')),
+            instructions = instructions
+        };
 
         recipes.Add(newRecipe);
+        SaveRecipesToJSON();
+
         UpdateDisplay();
         HideAddRecipePanel();
     }
+
+    private void SaveRecipesToJSON()
+    {
+        SerializableRecipeList serializableList = new SerializableRecipeList(this.recipes);
+        string json = JsonUtility.ToJson(serializableList, true);
+
+        string filePath = Application.dataPath + "/Data/recipes.json";
+
+        string directoryPath = System.IO.Path.GetDirectoryName(filePath);
+        if (!System.IO.Directory.Exists(directoryPath))
+        {
+            System.IO.Directory.CreateDirectory(directoryPath);
+        }
+
+        System.IO.File.WriteAllText(filePath, json);
+
+        Debug.Log("Recipes saved to " + filePath);
+    }
+
+    private void LoadRecipesFromJSON()
+    {
+        string filePath = Application.dataPath + "/Data/recipes.json";
+        if (System.IO.File.Exists(filePath))
+        {
+            string json = System.IO.File.ReadAllText(filePath);
+            SerializableRecipeList loadedData = JsonUtility.FromJson<SerializableRecipeList>(json);
+            recipes.Clear();
+            foreach (var serializableRecipe in loadedData.recipes)
+            {
+                Recipe newRecipe = ScriptableObject.CreateInstance<Recipe>();
+                newRecipe.title = serializableRecipe.title;
+                newRecipe.ingredients = new List<string>(serializableRecipe.ingredients);
+                newRecipe.instructions = serializableRecipe.instructions;
+
+                recipes.Add(newRecipe);
+            }
+            Debug.Log("Recipes loaded from " + filePath);
+        }
+        else
+        {
+            Debug.LogWarning("No recipes.json file found in " + filePath + ". Creating an empty recipe list.");
+            recipes = new List<Recipe>();
+        }
+    }
+
 
     private bool ValidateRecipe(string title, string ingredientsText, string instructions)
     {
