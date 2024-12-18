@@ -69,4 +69,9 @@ public class PlayerActions : MonoBehaviour
             Camera.main.transform.localEulerAngles = new Vector3(pitch, 0, 0);
         }
     }
+
+    public void StopPlayerMovement()
+    {
+        _Rigidbody.velocity = Vector3.zero;
+    }
 }

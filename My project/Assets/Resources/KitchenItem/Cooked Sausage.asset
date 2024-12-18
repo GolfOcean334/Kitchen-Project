@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a17a2ed1e6887e4488c385ac01e7435a, type: 3}
+  m_Name: Cooked Sausage
+  m_EditorClassIdentifier: 
+  ingredientName: Saucisse Cuite
+  ingredientDescription: "Voil\xE0 une saucisse bien cuite."
+  prefab: {fileID: 6667454754624132840, guid: 610e89d5adbdf374b95028f028b6494d, type: 3}
+  image: {fileID: 21300000, guid: f7494c8283f9dab4da18d5b4d4194d4f, type: 3}

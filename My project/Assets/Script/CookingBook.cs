@@ -102,7 +102,7 @@ public class CookingBook : MonoBehaviour
         Recipe newRecipe = new Recipe
         {
             title = title,
-            ingredients = new List<string>(ingredientsText.Split(',')),
+            ingredients = new List<string>(ingredientsText.Split(", ")),
             instructions = instructions
         };
 

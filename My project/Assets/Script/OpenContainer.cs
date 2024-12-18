@@ -43,6 +43,7 @@ public class OpenContainerHandler : MonoBehaviour
         if (openContainer.triggered)
         {
             OpenContainer();
+            playerActions.StopPlayerMovement();
         }
         if (closeContainer.triggered)
         {
