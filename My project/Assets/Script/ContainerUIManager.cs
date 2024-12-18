@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using TMPro; // Nécessaire pour TextMeshPro
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -21,18 +21,28 @@ public class ContainerUIManager : MonoBehaviour
 
     private void Start()
     {
-        for (int i = 0; i < shelfButtons.Length; i++)
+        if (container.shelves == null || container.shelves.Count == 0)
         {
-            int index = i;
-            shelfButtons[i].onClick.AddListener(() => DisplayShelf(index));
+            Debug.LogWarning("Le conteneur ne contient aucune étagère !");
+            return;
         }
 
-        leftHandButton.onClick.AddListener(() => PickIngredient("LeftHand"));
-        rightHandButton.onClick.AddListener(() => PickIngredient("RightHand"));
-
+        for (int i = 0; i < shelfButtons.Length; i++)
+        {
+            if (i >= container.shelves.Count)
+            {
+                shelfButtons[i].gameObject.SetActive(false);
+            }
+            else
+            {
+                int shelfIndex = i;
+                shelfButtons[i].gameObject.SetActive(true);
+                shelfButtons[i].onClick.RemoveAllListeners();
+                shelfButtons[i].onClick.AddListener(() => DisplayShelf(shelfIndex));
+            }
+        }
         DisplayShelf(0);
     }
-
     public void DisplayShelf(int shelfIndex)
     {
         foreach (var slot in currentIngredientSlots)
@@ -63,8 +73,6 @@ public class ContainerUIManager : MonoBehaviour
             }
         }
     }
-
-
     private void ShowIngredientDetails(KitchenObject ingredient)
     {
         selectedIngredient = ingredient;
