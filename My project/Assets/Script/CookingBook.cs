@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEditor;
+using UnityEngine.InputSystem;
 
 public class CookingBook : MonoBehaviour
 {
@@ -23,16 +24,38 @@ public class CookingBook : MonoBehaviour
     [SerializeField] private TMP_InputField inputInstructions;
 
     [SerializeField] private PlayerActions playerActions;
+    private PlayerInput playerInput;
+    private InputAction closeUICookingBook;
 
     [SerializeField] private Object saveFolder;
 
     private int currentPage = 0;
 
+    private void Awake()
+    {
+        playerInput = new PlayerInput();
+        closeUICookingBook = playerInput.Player.CloseUI;
+    }
+    private void OnEnable()
+    {
+        closeUICookingBook.Enable();
+    }
+    private void OnDisable()
+    {
+        closeUICookingBook.Disable();
+    }
     private void Start()
     {
         LoadRecipes();
         UpdateDisplay();
         addRecipePanel.SetActive(false);
+    }
+    private void Update()
+    {
+        if (closeUICookingBook.triggered)
+        {
+            HideAddRecipePanel();
+        }
     }
 
     public void ShowAddRecipePanel()

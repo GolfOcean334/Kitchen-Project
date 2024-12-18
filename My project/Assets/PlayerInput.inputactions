@@ -60,7 +60,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "ContainerClose",
+                    "name": "CloseUI",
                     "type": "Button",
                     "id": "dfa3a8e3-6f48-4ba7-9d25-c76d309db1ce",
                     "expectedControlType": "Button",
@@ -339,7 +339,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "ContainerClose",
+                    "action": "CloseUI",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -350,7 +350,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "ContainerClose",
+                    "action": "CloseUI",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

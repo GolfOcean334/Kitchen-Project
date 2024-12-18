@@ -82,7 +82,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""ContainerClose"",
+                    ""name"": ""CloseUI"",
                     ""type"": ""Button"",
                     ""id"": ""dfa3a8e3-6f48-4ba7-9d25-c76d309db1ce"",
                     ""expectedControlType"": ""Button"",
@@ -361,7 +361,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
-                    ""action"": ""ContainerClose"",
+                    ""action"": ""CloseUI"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -372,7 +372,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
-                    ""action"": ""ContainerClose"",
+                    ""action"": ""CloseUI"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -988,7 +988,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_Player_Drop = m_Player.FindAction("Drop", throwIfNotFound: true);
         m_Player_ChangeMainHand = m_Player.FindAction("ChangeMainHand", throwIfNotFound: true);
         m_Player_ContainerOpen = m_Player.FindAction("ContainerOpen", throwIfNotFound: true);
-        m_Player_ContainerClose = m_Player.FindAction("ContainerClose", throwIfNotFound: true);
+        m_Player_CloseUI = m_Player.FindAction("CloseUI", throwIfNotFound: true);
         m_Player_PlaceObjectInRecipient = m_Player.FindAction("PlaceObjectInRecipient", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
@@ -1069,7 +1069,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Drop;
     private readonly InputAction m_Player_ChangeMainHand;
     private readonly InputAction m_Player_ContainerOpen;
-    private readonly InputAction m_Player_ContainerClose;
+    private readonly InputAction m_Player_CloseUI;
     private readonly InputAction m_Player_PlaceObjectInRecipient;
     public struct PlayerActions
     {
@@ -1081,7 +1081,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         public InputAction @Drop => m_Wrapper.m_Player_Drop;
         public InputAction @ChangeMainHand => m_Wrapper.m_Player_ChangeMainHand;
         public InputAction @ContainerOpen => m_Wrapper.m_Player_ContainerOpen;
-        public InputAction @ContainerClose => m_Wrapper.m_Player_ContainerClose;
+        public InputAction @CloseUI => m_Wrapper.m_Player_CloseUI;
         public InputAction @PlaceObjectInRecipient => m_Wrapper.m_Player_PlaceObjectInRecipient;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
@@ -1110,9 +1110,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @ContainerOpen.started += instance.OnContainerOpen;
             @ContainerOpen.performed += instance.OnContainerOpen;
             @ContainerOpen.canceled += instance.OnContainerOpen;
-            @ContainerClose.started += instance.OnContainerClose;
-            @ContainerClose.performed += instance.OnContainerClose;
-            @ContainerClose.canceled += instance.OnContainerClose;
+            @CloseUI.started += instance.OnCloseUI;
+            @CloseUI.performed += instance.OnCloseUI;
+            @CloseUI.canceled += instance.OnCloseUI;
             @PlaceObjectInRecipient.started += instance.OnPlaceObjectInRecipient;
             @PlaceObjectInRecipient.performed += instance.OnPlaceObjectInRecipient;
             @PlaceObjectInRecipient.canceled += instance.OnPlaceObjectInRecipient;
@@ -1138,9 +1138,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @ContainerOpen.started -= instance.OnContainerOpen;
             @ContainerOpen.performed -= instance.OnContainerOpen;
             @ContainerOpen.canceled -= instance.OnContainerOpen;
-            @ContainerClose.started -= instance.OnContainerClose;
-            @ContainerClose.performed -= instance.OnContainerClose;
-            @ContainerClose.canceled -= instance.OnContainerClose;
+            @CloseUI.started -= instance.OnCloseUI;
+            @CloseUI.performed -= instance.OnCloseUI;
+            @CloseUI.canceled -= instance.OnCloseUI;
             @PlaceObjectInRecipient.started -= instance.OnPlaceObjectInRecipient;
             @PlaceObjectInRecipient.performed -= instance.OnPlaceObjectInRecipient;
             @PlaceObjectInRecipient.canceled -= instance.OnPlaceObjectInRecipient;
@@ -1332,7 +1332,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         void OnDrop(InputAction.CallbackContext context);
         void OnChangeMainHand(InputAction.CallbackContext context);
         void OnContainerOpen(InputAction.CallbackContext context);
-        void OnContainerClose(InputAction.CallbackContext context);
+        void OnCloseUI(InputAction.CallbackContext context);
         void OnPlaceObjectInRecipient(InputAction.CallbackContext context);
     }
     public interface IUIActions

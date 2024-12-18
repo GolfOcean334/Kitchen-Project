@@ -20,7 +20,7 @@ public class OpenContainerHandler : MonoBehaviour
     {
         playerInput = new PlayerInput();
         openContainer = playerInput.Player.ContainerOpen;
-        closeContainer = playerInput.Player.ContainerClose;
+        closeContainer = playerInput.Player.CloseUI;
         _camera = Camera.main;
     }
     private void OnEnable()
