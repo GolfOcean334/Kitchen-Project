@@ -6,6 +6,7 @@ public class DropItem : MonoBehaviour
     [SerializeField] private ChangeMainHand mainHand;
     [SerializeField] private HighlightHandler highlightHandler;
     [SerializeField] private PickupHandler pickupHandler;
+    [SerializeField] private Camera playerCamera;
 
     private PlayerInput playerInput;
     private InputAction dropMainHandAction;
@@ -27,8 +28,38 @@ public class DropItem : MonoBehaviour
     {
         if (dropMainHandAction.triggered)
         {
+            TryPlaceOrDropObject();
+        }
+    }
+    private void TryPlaceOrDropObject()
+    {
+        GameObject handObject = pickupHandler.GetCurrentMainHandObject();
+
+        if (handObject == null)
+            return;
+
+        Ray ray = new Ray(playerCamera.transform.position, playerCamera.transform.forward);
+
+        if (Physics.Raycast(ray, out RaycastHit hit, 3f))
+        {
+            PlaceObject(handObject, hit.point);
+        }
+        else
+        {
             DropMainHandObject();
         }
+    }
+
+    private void PlaceObject(GameObject handObject, Vector3 targetPosition)
+    {
+        targetPosition.y += 0.2f;
+
+        pickupHandler.ClearCurrentMainHandObject();
+
+        handObject.transform.SetParent(null);
+        handObject.transform.position = targetPosition;
+
+        Debug.Log($"Objet {handObject.name} placé à {targetPosition}");
     }
     private void DropMainHandObject()
     {

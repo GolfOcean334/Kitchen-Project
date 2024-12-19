@@ -1,10 +1,12 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class Stove : MonoBehaviour
 {
     [SerializeField] private Slider stoveSlider;
     [SerializeField] private ParticleSystem particleStove;
+    [SerializeField] private TextMeshProUGUI displayStoveTemp;
 
     private ParticleSystem.MainModule particleMain;
     private ParticleSystem.EmissionModule particleEmission;
@@ -20,6 +22,7 @@ public class Stove : MonoBehaviour
     void Update()
     {
         UpdateParticleProperties();
+        StoveSliderValue();
     }
 
     private void UpdateParticleProperties()
@@ -42,5 +45,9 @@ public class Stove : MonoBehaviour
                 particleEmission.rateOverTime = Mathf.Lerp(10f, 50f, stoveSlider.value / stoveSlider.maxValue);
             }
         }
+    }
+    private void StoveSliderValue()
+    {
+        displayStoveTemp.text = stoveSlider.value.ToString("F0") + " °C";
     }
 }

@@ -20,18 +20,19 @@ public class PlaceObjectInRecipientHandler : MonoBehaviour
     private void OnEnable()
     {
         placeAction.Enable();
-        placeAction.performed += OnPlacePerformed;
     }
 
     private void OnDisable()
     {
         placeAction.Disable();
-        placeAction.performed -= OnPlacePerformed;
     }
-
-    private void OnPlacePerformed(InputAction.CallbackContext context)
+    private void Update()
     {
-        TryPlaceObject();
+        if (placeAction.triggered) 
+        {
+            TryPlaceObject();
+        }
+
     }
 
     private void TryPlaceObject()
@@ -41,16 +42,12 @@ public class PlaceObjectInRecipientHandler : MonoBehaviour
         {
             if (hit.collider.CompareTag("Recipient"))
             {
-                GameObject handObject = GetCurrentMainHandObject();
+                GameObject handObject = pickupHandler.GetCurrentMainHandObject();
 
                 if (handObject != null)
                 {
                     PlaceObjectInRecipient(hit.collider.gameObject, handObject);
-                    ClearCurrentMainHandObject();
-                }
-                else
-                {
-                    Debug.Log("Votre main principale est vide !");
+                    pickupHandler.ClearCurrentMainHandObject();
                 }
             }
         }
@@ -75,28 +72,6 @@ public class PlaceObjectInRecipientHandler : MonoBehaviour
         handObject.transform.localPosition = new Vector3(0, 0.2f, 0);
         handObject.transform.localRotation = Quaternion.identity;
 
-        ClearCurrentMainHandObject();
-
-        Debug.Log($"{handObject.name} a été placé dans {recipient.name} avec position gelée et retiré de la main principale.");
-    }
-
-
-
-
-    private GameObject GetCurrentMainHandObject()
-    {
-        return changeMainHand.currentMainHandObject;
-    }
-
-    private void ClearCurrentMainHandObject()
-    {
-        if (changeMainHand.currentMainHandIndex == 0)
-        {
-            pickupHandler.ClearRightHandObject();
-        }
-        else
-        {
-            pickupHandler.ClearLeftHandObject();
-        }
+        pickupHandler.ClearCurrentMainHandObject();
     }
 }

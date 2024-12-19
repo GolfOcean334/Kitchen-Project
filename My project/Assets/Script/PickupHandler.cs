@@ -10,6 +10,7 @@ public class PickupHandler : MonoBehaviour
     [SerializeField] public GameObject imgLeftHand;
 
     [SerializeField] private Camera playerCamera;
+    [SerializeField] private ChangeMainHand changeMainHand;
     public GameObject rightHandObject;
     public GameObject leftHandObject;
 
@@ -79,7 +80,6 @@ public class PickupHandler : MonoBehaviour
         Rigidbody rb = obj.GetComponent<Rigidbody>();
         if (rb != null) rb.isKinematic = true;
 
-        // Disable colliders
         Collider[] colliders = obj.GetComponents<Collider>();
         foreach (var collider in colliders)
         {
@@ -135,6 +135,21 @@ public class PickupHandler : MonoBehaviour
             DetachObject(leftHandObject);
             leftHandObject = null;
             imgLeftHand.SetActive(true);
+        }
+    }
+    public GameObject GetCurrentMainHandObject()
+    {
+        return changeMainHand.currentMainHandObject;
+    }
+    public void ClearCurrentMainHandObject()
+    {
+        if (changeMainHand.currentMainHandIndex == 0)
+        {
+            ClearRightHandObject();
+        }
+        else
+        {
+            ClearLeftHandObject();
         }
     }
 
