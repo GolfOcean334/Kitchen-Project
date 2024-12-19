@@ -63,11 +63,13 @@ public class PickupHandler : MonoBehaviour
         {
             AttachObjectToHand(obj, rightHand, ref rightHandObject);
             imgRightHand.SetActive(false);
+            changeMainHand.SetMainHand(0);
         }
         else if (leftHandObject == null)
         {
             AttachObjectToHand(obj, leftHand, ref leftHandObject);
             imgLeftHand.SetActive(false);
+            changeMainHand.SetMainHand(1);
         }
         else
         {
