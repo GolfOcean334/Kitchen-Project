@@ -42,13 +42,13 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "ChangeMainHand",
-                    "type": "Value",
-                    "id": "1ff851a9-30eb-4955-9a8e-605b034b9f90",
-                    "expectedControlType": "Vector2",
+                    "name": "PlaceObjectInRecipient",
+                    "type": "Button",
+                    "id": "c6f5da90-89ce-4e34-bb4d-dfd07570ebe2",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": true
+                    "initialStateCheck": false
                 },
                 {
                     "name": "ContainerOpen",
@@ -69,9 +69,18 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "PlaceObjectInRecipient",
+                    "name": "ChangeMainHand",
+                    "type": "Value",
+                    "id": "1ff851a9-30eb-4955-9a8e-605b034b9f90",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "OpenBindingUI",
                     "type": "Button",
-                    "id": "c6f5da90-89ce-4e34-bb4d-dfd07570ebe2",
+                    "id": "7239135a-9b6f-4f49-849e-a309f20926d3",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -290,28 +299,6 @@
                 },
                 {
                     "name": "",
-                    "id": "c91fd134-f922-4e75-8982-e229744bdf11",
-                    "path": "<Mouse>/scroll",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard&Mouse",
-                    "action": "ChangeMainHand",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "26d411ab-5674-4eb3-b3da-f10897bf1f84",
-                    "path": "<Joystick>/stick",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Joystick",
-                    "action": "ChangeMainHand",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "7b7ef60a-f0dd-45fe-9c88-eb7b068c2839",
                     "path": "<Keyboard>/e",
                     "interactions": "",
@@ -368,11 +355,55 @@
                 {
                     "name": "",
                     "id": "3c4294e5-430e-416c-b716-2fb4032f51f8",
-                    "path": "<Gamepad>/buttonNorth",
+                    "path": "<Gamepad>/buttonWest",
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "PlaceObjectInRecipient",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c91fd134-f922-4e75-8982-e229744bdf11",
+                    "path": "<Mouse>/scroll",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "ChangeMainHand",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "26d411ab-5674-4eb3-b3da-f10897bf1f84",
+                    "path": "<Gamepad>/dpad",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "ChangeMainHand",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "31c3f716-3180-4041-9391-91538ffbe968",
+                    "path": "<Keyboard>/p",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "OpenBindingUI",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "cd237ca9-7354-4990-9b22-fbce0359db48",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "OpenBindingUI",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

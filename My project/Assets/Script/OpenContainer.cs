@@ -92,14 +92,14 @@ public class OpenContainerHandler : MonoBehaviour
             {
                 playerActions.enabled = false;
             }
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
             ShowUIContainer();
         }
     }
     private void ShowUIContainer()
     {
         containerPanel.SetActive(true);
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
     public void CloseUIContainer()
     {

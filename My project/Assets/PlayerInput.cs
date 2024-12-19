@@ -64,13 +64,13 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""ChangeMainHand"",
-                    ""type"": ""Value"",
-                    ""id"": ""1ff851a9-30eb-4955-9a8e-605b034b9f90"",
-                    ""expectedControlType"": ""Vector2"",
+                    ""name"": ""PlaceObjectInRecipient"",
+                    ""type"": ""Button"",
+                    ""id"": ""c6f5da90-89ce-4e34-bb4d-dfd07570ebe2"",
+                    ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": true
+                    ""initialStateCheck"": false
                 },
                 {
                     ""name"": ""ContainerOpen"",
@@ -91,9 +91,18 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""PlaceObjectInRecipient"",
+                    ""name"": ""ChangeMainHand"",
+                    ""type"": ""Value"",
+                    ""id"": ""1ff851a9-30eb-4955-9a8e-605b034b9f90"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""OpenBindingUI"",
                     ""type"": ""Button"",
-                    ""id"": ""c6f5da90-89ce-4e34-bb4d-dfd07570ebe2"",
+                    ""id"": ""7239135a-9b6f-4f49-849e-a309f20926d3"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -312,28 +321,6 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""c91fd134-f922-4e75-8982-e229744bdf11"",
-                    ""path"": ""<Mouse>/scroll"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard&Mouse"",
-                    ""action"": ""ChangeMainHand"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""26d411ab-5674-4eb3-b3da-f10897bf1f84"",
-                    ""path"": ""<Joystick>/stick"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Joystick"",
-                    ""action"": ""ChangeMainHand"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""7b7ef60a-f0dd-45fe-9c88-eb7b068c2839"",
                     ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
@@ -390,11 +377,55 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""3c4294e5-430e-416c-b716-2fb4032f51f8"",
-                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""path"": ""<Gamepad>/buttonWest"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
                     ""action"": ""PlaceObjectInRecipient"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c91fd134-f922-4e75-8982-e229744bdf11"",
+                    ""path"": ""<Mouse>/scroll"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""ChangeMainHand"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""26d411ab-5674-4eb3-b3da-f10897bf1f84"",
+                    ""path"": ""<Gamepad>/dpad"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""ChangeMainHand"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""31c3f716-3180-4041-9391-91538ffbe968"",
+                    ""path"": ""<Keyboard>/p"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""OpenBindingUI"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cd237ca9-7354-4990-9b22-fbce0359db48"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""OpenBindingUI"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -986,10 +1017,11 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
         m_Player_Pickup = m_Player.FindAction("Pickup", throwIfNotFound: true);
         m_Player_Drop = m_Player.FindAction("Drop", throwIfNotFound: true);
-        m_Player_ChangeMainHand = m_Player.FindAction("ChangeMainHand", throwIfNotFound: true);
+        m_Player_PlaceObjectInRecipient = m_Player.FindAction("PlaceObjectInRecipient", throwIfNotFound: true);
         m_Player_ContainerOpen = m_Player.FindAction("ContainerOpen", throwIfNotFound: true);
         m_Player_CloseUI = m_Player.FindAction("CloseUI", throwIfNotFound: true);
-        m_Player_PlaceObjectInRecipient = m_Player.FindAction("PlaceObjectInRecipient", throwIfNotFound: true);
+        m_Player_ChangeMainHand = m_Player.FindAction("ChangeMainHand", throwIfNotFound: true);
+        m_Player_OpenBindingUI = m_Player.FindAction("OpenBindingUI", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1067,10 +1099,11 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Look;
     private readonly InputAction m_Player_Pickup;
     private readonly InputAction m_Player_Drop;
-    private readonly InputAction m_Player_ChangeMainHand;
+    private readonly InputAction m_Player_PlaceObjectInRecipient;
     private readonly InputAction m_Player_ContainerOpen;
     private readonly InputAction m_Player_CloseUI;
-    private readonly InputAction m_Player_PlaceObjectInRecipient;
+    private readonly InputAction m_Player_ChangeMainHand;
+    private readonly InputAction m_Player_OpenBindingUI;
     public struct PlayerActions
     {
         private @PlayerInput m_Wrapper;
@@ -1079,10 +1112,11 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         public InputAction @Look => m_Wrapper.m_Player_Look;
         public InputAction @Pickup => m_Wrapper.m_Player_Pickup;
         public InputAction @Drop => m_Wrapper.m_Player_Drop;
-        public InputAction @ChangeMainHand => m_Wrapper.m_Player_ChangeMainHand;
+        public InputAction @PlaceObjectInRecipient => m_Wrapper.m_Player_PlaceObjectInRecipient;
         public InputAction @ContainerOpen => m_Wrapper.m_Player_ContainerOpen;
         public InputAction @CloseUI => m_Wrapper.m_Player_CloseUI;
-        public InputAction @PlaceObjectInRecipient => m_Wrapper.m_Player_PlaceObjectInRecipient;
+        public InputAction @ChangeMainHand => m_Wrapper.m_Player_ChangeMainHand;
+        public InputAction @OpenBindingUI => m_Wrapper.m_Player_OpenBindingUI;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1104,18 +1138,21 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Drop.started += instance.OnDrop;
             @Drop.performed += instance.OnDrop;
             @Drop.canceled += instance.OnDrop;
-            @ChangeMainHand.started += instance.OnChangeMainHand;
-            @ChangeMainHand.performed += instance.OnChangeMainHand;
-            @ChangeMainHand.canceled += instance.OnChangeMainHand;
+            @PlaceObjectInRecipient.started += instance.OnPlaceObjectInRecipient;
+            @PlaceObjectInRecipient.performed += instance.OnPlaceObjectInRecipient;
+            @PlaceObjectInRecipient.canceled += instance.OnPlaceObjectInRecipient;
             @ContainerOpen.started += instance.OnContainerOpen;
             @ContainerOpen.performed += instance.OnContainerOpen;
             @ContainerOpen.canceled += instance.OnContainerOpen;
             @CloseUI.started += instance.OnCloseUI;
             @CloseUI.performed += instance.OnCloseUI;
             @CloseUI.canceled += instance.OnCloseUI;
-            @PlaceObjectInRecipient.started += instance.OnPlaceObjectInRecipient;
-            @PlaceObjectInRecipient.performed += instance.OnPlaceObjectInRecipient;
-            @PlaceObjectInRecipient.canceled += instance.OnPlaceObjectInRecipient;
+            @ChangeMainHand.started += instance.OnChangeMainHand;
+            @ChangeMainHand.performed += instance.OnChangeMainHand;
+            @ChangeMainHand.canceled += instance.OnChangeMainHand;
+            @OpenBindingUI.started += instance.OnOpenBindingUI;
+            @OpenBindingUI.performed += instance.OnOpenBindingUI;
+            @OpenBindingUI.canceled += instance.OnOpenBindingUI;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -1132,18 +1169,21 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Drop.started -= instance.OnDrop;
             @Drop.performed -= instance.OnDrop;
             @Drop.canceled -= instance.OnDrop;
-            @ChangeMainHand.started -= instance.OnChangeMainHand;
-            @ChangeMainHand.performed -= instance.OnChangeMainHand;
-            @ChangeMainHand.canceled -= instance.OnChangeMainHand;
+            @PlaceObjectInRecipient.started -= instance.OnPlaceObjectInRecipient;
+            @PlaceObjectInRecipient.performed -= instance.OnPlaceObjectInRecipient;
+            @PlaceObjectInRecipient.canceled -= instance.OnPlaceObjectInRecipient;
             @ContainerOpen.started -= instance.OnContainerOpen;
             @ContainerOpen.performed -= instance.OnContainerOpen;
             @ContainerOpen.canceled -= instance.OnContainerOpen;
             @CloseUI.started -= instance.OnCloseUI;
             @CloseUI.performed -= instance.OnCloseUI;
             @CloseUI.canceled -= instance.OnCloseUI;
-            @PlaceObjectInRecipient.started -= instance.OnPlaceObjectInRecipient;
-            @PlaceObjectInRecipient.performed -= instance.OnPlaceObjectInRecipient;
-            @PlaceObjectInRecipient.canceled -= instance.OnPlaceObjectInRecipient;
+            @ChangeMainHand.started -= instance.OnChangeMainHand;
+            @ChangeMainHand.performed -= instance.OnChangeMainHand;
+            @ChangeMainHand.canceled -= instance.OnChangeMainHand;
+            @OpenBindingUI.started -= instance.OnOpenBindingUI;
+            @OpenBindingUI.performed -= instance.OnOpenBindingUI;
+            @OpenBindingUI.canceled -= instance.OnOpenBindingUI;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -1330,10 +1370,11 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         void OnLook(InputAction.CallbackContext context);
         void OnPickup(InputAction.CallbackContext context);
         void OnDrop(InputAction.CallbackContext context);
-        void OnChangeMainHand(InputAction.CallbackContext context);
+        void OnPlaceObjectInRecipient(InputAction.CallbackContext context);
         void OnContainerOpen(InputAction.CallbackContext context);
         void OnCloseUI(InputAction.CallbackContext context);
-        void OnPlaceObjectInRecipient(InputAction.CallbackContext context);
+        void OnChangeMainHand(InputAction.CallbackContext context);
+        void OnOpenBindingUI(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
