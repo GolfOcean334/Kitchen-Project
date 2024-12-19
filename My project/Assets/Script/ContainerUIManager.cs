@@ -64,7 +64,7 @@ public class ContainerUIManager : MonoBehaviour
 
         if (shelfIndex < 0 || shelfIndex >= container.shelves.Count) return;
 
-        currentShelf = container.shelves[shelfIndex]; // Enregistrer la référence de l'étagère
+        currentShelf = container.shelves[shelfIndex];
 
         foreach (var item in currentShelf.items)
         {

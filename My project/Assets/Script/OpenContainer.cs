@@ -48,8 +48,6 @@ public class OpenContainerHandler : MonoBehaviour
         if (closeContainer.triggered)
         {
             CloseUIContainer();
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = true;
         }
     }
     private void DetectionContainer()
@@ -103,8 +101,14 @@ public class OpenContainerHandler : MonoBehaviour
     {
         containerPanel.SetActive(true);
     }
-    private void CloseUIContainer()
+    public void CloseUIContainer()
     {
         containerPanel.SetActive(false);
+        if (playerActions != null)
+        {
+            playerActions.enabled = true;
+        }
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 }
