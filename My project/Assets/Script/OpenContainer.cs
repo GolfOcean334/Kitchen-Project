@@ -48,6 +48,8 @@ public class OpenContainerHandler : MonoBehaviour
         if (closeContainer.triggered)
         {
             CloseUIContainer();
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = true;
         }
     }
     private void DetectionContainer()

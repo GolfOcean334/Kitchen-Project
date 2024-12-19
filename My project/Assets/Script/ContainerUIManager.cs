@@ -16,7 +16,9 @@ public class ContainerUIManager : MonoBehaviour
     [SerializeField] private Button[] shelfButtons;
 
     [SerializeField] private PickupHandler PickupHandler;
+
     private KitchenObject selectedIngredient;
+    private Shelf currentShelf;
     private List<GameObject> currentIngredientSlots = new List<GameObject>();
 
     private void Start()
@@ -41,8 +43,17 @@ public class ContainerUIManager : MonoBehaviour
                 shelfButtons[i].onClick.AddListener(() => DisplayShelf(shelfIndex));
             }
         }
+
+        // Ajouter les listeners pour les boutons des mains
+        leftHandButton.onClick.RemoveAllListeners();
+        leftHandButton.onClick.AddListener(() => PickIngredient("LeftHand"));
+
+        rightHandButton.onClick.RemoveAllListeners();
+        rightHandButton.onClick.AddListener(() => PickIngredient("RightHand"));
+
         DisplayShelf(0);
     }
+
     public void DisplayShelf(int shelfIndex)
     {
         foreach (var slot in currentIngredientSlots)
@@ -53,9 +64,9 @@ public class ContainerUIManager : MonoBehaviour
 
         if (shelfIndex < 0 || shelfIndex >= container.shelves.Count) return;
 
-        Shelf shelf = container.shelves[shelfIndex];
+        currentShelf = container.shelves[shelfIndex]; // Enregistrer la référence de l'étagère
 
-        foreach (var item in shelf.items)
+        foreach (var item in currentShelf.items)
         {
             GameObject slot = Instantiate(ingredientSlotPrefab, ingredientGridParent);
             currentIngredientSlots.Add(slot);
@@ -73,6 +84,7 @@ public class ContainerUIManager : MonoBehaviour
             }
         }
     }
+
     private void ShowIngredientDetails(KitchenObject ingredient)
     {
         selectedIngredient = ingredient;
@@ -82,7 +94,14 @@ public class ContainerUIManager : MonoBehaviour
 
     private void PickIngredient(string hand)
     {
-        if (selectedIngredient == null) return;
+        if (selectedIngredient == null)
+        {
+            Debug.LogWarning("Aucun ingrédient sélectionné !");
+            return;
+        }
+        
+    ingredientNameText.text = string.Empty;
+    ingredientDescriptionText.text = string.Empty;
 
         GameObject ingredientObject = Instantiate(selectedIngredient.prefab);
 
@@ -99,12 +118,14 @@ public class ContainerUIManager : MonoBehaviour
             if (pickupHandler.GetLeftHandObject() == null)
             {
                 pickupHandler.AttachObjectToHand(ingredientObject, pickupHandler.leftHand, ref pickupHandler.leftHandObject);
+                pickupHandler.imgLeftHand.SetActive(false);
                 Debug.Log($"Ingrédient {selectedIngredient.ingredientName} ajouté à la main gauche.");
             }
             else
             {
                 Debug.LogWarning("La main gauche est déjà occupée !");
                 Destroy(ingredientObject);
+                return;
             }
         }
         else if (hand == "RightHand")
@@ -112,20 +133,25 @@ public class ContainerUIManager : MonoBehaviour
             if (pickupHandler.GetRightHandObject() == null)
             {
                 pickupHandler.AttachObjectToHand(ingredientObject, pickupHandler.rightHand, ref pickupHandler.rightHandObject);
+                pickupHandler.imgRightHand.SetActive(false);
                 Debug.Log($"Ingrédient {selectedIngredient.ingredientName} ajouté à la main droite.");
             }
             else
             {
                 Debug.LogWarning("La main droite est déjà occupée !");
                 Destroy(ingredientObject);
+                return;
             }
+        }
+
+        if (currentShelf != null)
+        {
+            currentShelf.items.Remove(selectedIngredient);
+            DisplayShelf(container.shelves.IndexOf(currentShelf));
         }
 
         ingredientNameText.text = string.Empty;
         ingredientDescriptionText.text = string.Empty;
-        ingredientImage.sprite = null;
         selectedIngredient = null;
     }
-
-
 }

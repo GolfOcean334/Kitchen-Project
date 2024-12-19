@@ -6,8 +6,8 @@ public class PickupHandler : MonoBehaviour
     [SerializeField] public Transform rightHand;
     [SerializeField] public Transform leftHand;
 
-    [SerializeField] private GameObject imgRightHand;
-    [SerializeField] private GameObject imgLeftHand;
+    [SerializeField] public GameObject imgRightHand;
+    [SerializeField] public GameObject imgLeftHand;
 
     [SerializeField] private Camera playerCamera;
     public GameObject rightHandObject;

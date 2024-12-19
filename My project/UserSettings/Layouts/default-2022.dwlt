@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1920
     height: 989
   m_ShowMode: 4
-  m_Title: Hierarchy
+  m_Title: Game
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -118,7 +118,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 1
-  controlID: 266
+  controlID: 115
   draggingID: 0
 --- !u!114 &6
 MonoBehaviour:
@@ -144,7 +144,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 267
+  controlID: 116
   draggingID: 0
 --- !u!114 &7
 MonoBehaviour:
@@ -170,7 +170,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 425
+  controlID: 43
   draggingID: 0
 --- !u!114 &8
 MonoBehaviour:
@@ -196,7 +196,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 50}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 206
+  controlID: 44
   draggingID: 0
 --- !u!114 &9
 MonoBehaviour:
@@ -217,8 +217,8 @@ MonoBehaviour:
     y: 0
     width: 283
     height: 637
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 201, y: 221}
+  m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 14}
   m_Panes:
   - {fileID: 14}
@@ -446,7 +446,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 0efbffff5c6e0000e66e0000d26f0000
+      m_ExpandedIDs: 46effffff273000042740000b075000018760000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -866,9 +866,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 974.8108, y: -409.46262, z: 7.0240073}
+    m_Target: {x: 716.2291, y: -431.5622, z: 2252.9153}
     speed: 2
-    m_Value: {x: 974.8108, y: -409.46262, z: 7.0240073}
+    m_Value: {x: 716.2291, y: -431.5622, z: 2252.9153}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -914,13 +914,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: 0.1465666, y: 0.6921266, z: -0.14670195, w: 0.69130695}
+    m_Target: {x: 0.09082144, y: 0.14405799, z: -0.013110209, w: 0.9852786}
     speed: 2
-    m_Value: {x: 0.14657043, y: 0.6921447, z: -0.14670579, w: 0.691325}
+    m_Value: {x: 0.090823844, y: 0.1440618, z: -0.013110557, w: 0.98530465}
   m_Size:
-    m_Target: 517.34
+    m_Target: 1187.3428
     speed: 2
-    m_Value: 517.34
+    m_Value: 1187.3428
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -991,7 +991,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Script
+    - Assets/Resources/KitchenItem
     m_Globs: []
     m_OriginalText: 
     m_ImportLogFlags: 0
@@ -999,7 +999,7 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 69
   m_LastFolders:
-  - Assets/Script
+  - Assets/Resources/KitchenItem
   m_LastFoldersGridSize: 69
   m_LastProjectPath: C:\Users\GolfOcean33\OneDrive\Documents\GitHub\Kitchen-Project\My
     project
@@ -1007,9 +1007,9 @@ MonoBehaviour:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: a0720000
-    m_LastClickedID: 29344
-    m_ExpandedIDs: 000000004072000000ca9a3b
+    m_SelectedIDs: 2e310000
+    m_LastClickedID: 12590
+    m_ExpandedIDs: 00000000587900007679000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1037,7 +1037,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 0000000040720000
+    m_ExpandedIDs: 0000000058790000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1170,7 +1170,7 @@ MonoBehaviour:
     m_ControlHash: -371814159
     m_PrefName: Preview_InspectorPreview
   m_LastInspectedObjectInstanceID: -1
-  m_LastVerticalScrollValue: 594
+  m_LastVerticalScrollValue: 0
   m_GlobalObjectId: 
   m_InspectorMode: 0
   m_LockTracker:
