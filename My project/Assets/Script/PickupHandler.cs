@@ -63,13 +63,11 @@ public class PickupHandler : MonoBehaviour
         {
             AttachObjectToHand(obj, rightHand, ref rightHandObject);
             imgRightHand.SetActive(false);
-            changeMainHand.SetMainHand(0);
         }
         else if (leftHandObject == null)
         {
             AttachObjectToHand(obj, leftHand, ref leftHandObject);
             imgLeftHand.SetActive(false);
-            changeMainHand.SetMainHand(1);
         }
         else
         {
@@ -124,6 +122,11 @@ public class PickupHandler : MonoBehaviour
     {
         if (rightHandObject != null)
         {
+            if (changeMainHand.currentMainHandObject == rightHandObject)
+            {
+                changeMainHand.currentMainHandObject = null;
+            }
+
             DetachObject(rightHandObject);
             rightHandObject = null;
             imgRightHand.SetActive(true);
@@ -134,6 +137,11 @@ public class PickupHandler : MonoBehaviour
     {
         if (leftHandObject != null)
         {
+            if (changeMainHand.currentMainHandObject == leftHandObject)
+            {
+                changeMainHand.currentMainHandObject = null;
+            }
+
             DetachObject(leftHandObject);
             leftHandObject = null;
             imgLeftHand.SetActive(true);
@@ -153,6 +161,7 @@ public class PickupHandler : MonoBehaviour
         {
             ClearLeftHandObject();
         }
+        changeMainHand.currentMainHandObject = null;
     }
 
     private void DetachObject(GameObject obj)
