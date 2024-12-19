@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a17a2ed1e6887e4488c385ac01e7435a, type: 3}
-  m_Name: Boiled Egg
+  m_Name: Carrot
   m_EditorClassIdentifier: 
-  ingredientName: Oeuf dur
-  ingredientDescription: "Aussi r\xE9sistant que la pierre."
-  prefab: {fileID: 4233294293685470788, guid: d640ec1599e4a30428f6b81ae4d49462, type: 3}
-  image: {fileID: 21300000, guid: 3530a055e38db7040835ee0c2fc56062, type: 3}
+  ingredientName: Carotte
+  ingredientDescription: Une carotte orange.
+  prefab: {fileID: 221025165036704325, guid: bdcb1163aaa701e47a05799e04111331, type: 3}
+  image: {fileID: 21300000, guid: 61dae29f28ea3f54c8c281e5af316f17, type: 3}

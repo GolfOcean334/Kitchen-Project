@@ -13,6 +13,7 @@ public class ContainerUIManager : MonoBehaviour
     [SerializeField] private Image ingredientImage;
     [SerializeField] private Button leftHandButton;
     [SerializeField] private Button rightHandButton;
+    [SerializeField] private Button addToShelfButton;
     [SerializeField] private Button[] shelfButtons;
 
     [SerializeField] private PickupHandler PickupHandler;
@@ -50,6 +51,9 @@ public class ContainerUIManager : MonoBehaviour
 
         rightHandButton.onClick.RemoveAllListeners();
         rightHandButton.onClick.AddListener(() => PickIngredient("RightHand"));
+
+        addToShelfButton.onClick.RemoveAllListeners();
+        addToShelfButton.onClick.AddListener(AddObjectToShelf);
 
         DisplayShelf(0);
     }
@@ -91,6 +95,39 @@ public class ContainerUIManager : MonoBehaviour
         ingredientNameText.text = ingredient.ingredientName;
         ingredientDescriptionText.text = ingredient.ingredientDescription;
     }
+    private void AddObjectToShelf()
+    {
+        if (currentShelf == null)
+        {
+            Debug.LogWarning("Aucune étagère sélectionnée !");
+            return;
+        }
+
+        GameObject handObject = PickupHandler.GetCurrentMainHandObject();
+        if (handObject == null)
+        {
+            Debug.LogWarning("Aucun objet n'est tenu dans les mains !");
+            return;
+        }
+
+        KitchenObject newIngredient = ScriptableObject.CreateInstance<KitchenObject>();
+        newIngredient.ingredientName = handObject.name;
+        newIngredient.ingredientDescription = "Un nouvel ingrédient ajouté par le joueur.";
+        newIngredient.prefab = handObject;
+        newIngredient.image = handObject.GetComponentInChildren<SpriteRenderer>()?.sprite
+                              ?? handObject.GetComponentInChildren<Image>()?.sprite;
+
+        currentShelf.items.Add(newIngredient);
+
+        PickupHandler.ClearCurrentMainHandObject();
+
+        DisplayShelf(container.shelves.IndexOf(currentShelf));
+
+        Debug.Log($"Un nouveau ScriptableObject {newIngredient.ingredientName} a été créé et ajouté à l’étagère.");
+    }
+
+
+
 
     private void PickIngredient(string hand)
     {
