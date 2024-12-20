@@ -52,9 +52,18 @@ public class PlaceObjectInRecipientHandler : MonoBehaviour
             }
         }
     }
-
     private void PlaceObjectInRecipient(GameObject recipient, GameObject handObject)
     {
+        Debug.Log($"Tentative de placement de {handObject.name} dans {recipient.name}");
+
+        if (handObject == null || recipient == null)
+        {
+            Debug.LogError("L'objet ou le récipient est nul !");
+            return;
+        }
+
+        Vector3 originalScale = handObject.transform.localScale;
+
         Rigidbody rb = handObject.GetComponent<Rigidbody>();
         if (rb != null)
         {
@@ -67,11 +76,16 @@ public class PlaceObjectInRecipientHandler : MonoBehaviour
             collider.enabled = false;
         }
 
-        handObject.transform.SetParent(recipient.transform);
+        Vector3 targetPosition = recipient.transform.position + recipient.transform.up * 0.1f;
+        handObject.transform.position = targetPosition;
 
-        handObject.transform.localPosition = new Vector3(0, 0.2f, 0);
-        handObject.transform.localRotation = Quaternion.identity;
+        handObject.transform.rotation = recipient.transform.rotation;
+        handObject.transform.localScale = Vector3.one;
 
+        Debug.Log("Objet placé, suppression de la main principale...");
         pickupHandler.ClearCurrentMainHandObject();
+
+        handObject.transform.localScale = originalScale;
     }
+
 }
