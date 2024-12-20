@@ -16,6 +16,10 @@ public class ContainerUIManager : MonoBehaviour
     [SerializeField] private Button addToShelfButton;
     [SerializeField] private Button[] shelfButtons;
 
+    [SerializeField] private Button randomizeButton;
+    private bool isRandomized = false;
+    private List<Shelf> originalShelves;
+
     [SerializeField] private PickupHandler PickupHandler;
 
     private KitchenObject selectedIngredient;
@@ -54,6 +58,9 @@ public class ContainerUIManager : MonoBehaviour
 
         addToShelfButton.onClick.RemoveAllListeners();
         addToShelfButton.onClick.AddListener(AddObjectToShelf);
+
+        randomizeButton.onClick.RemoveAllListeners();
+        randomizeButton.onClick.AddListener(ToggleRandomizeContainer);
 
         DisplayShelf(0);
     }
@@ -95,6 +102,85 @@ public class ContainerUIManager : MonoBehaviour
         ingredientNameText.text = ingredient.ingredientName;
         ingredientDescriptionText.text = ingredient.ingredientDescription;
     }
+
+    public void ToggleRandomizeContainer()
+    {
+        if (!isRandomized)
+        {
+            // Sauvegarder l'état d'origine
+            originalShelves = new List<Shelf>();
+            foreach (var shelf in container.shelves)
+            {
+                var copy = new Shelf
+                {
+                    items = new List<KitchenObject>(shelf.items)
+                };
+                originalShelves.Add(copy);
+            }
+
+            // Randomiser le nombre d'étagères et les ingrédients
+            int shelfCount = Random.Range(0, 4); // Nombre d'étagères entre 0 et 3
+            container.shelves = new List<Shelf>();
+            for (int i = 0; i < shelfCount; i++)
+            {
+                Shelf randomShelf = new Shelf { items = new List<KitchenObject>() };
+                int ingredientCount = Random.Range(1, 16); // Nombre d'ingrédients entre 1 et 15
+                for (int j = 0; j < ingredientCount; j++)
+                {
+                    if (originalShelves.Count > 0)
+                    {
+                        int randomShelfIndex = Random.Range(0, originalShelves.Count);
+                        Shelf sourceShelf = originalShelves[randomShelfIndex];
+                        if (sourceShelf.items.Count > 0)
+                        {
+                            int randomItemIndex = Random.Range(0, sourceShelf.items.Count);
+                            KitchenObject randomItem = sourceShelf.items[randomItemIndex];
+                            randomShelf.items.Add(randomItem);
+                        }
+                    }
+                }
+                container.shelves.Add(randomShelf);
+            }
+
+            // Mettre à jour les boutons d'étagère en fonction des étagères qui contiennent des ingrédients
+            UpdateShelfButtons();
+
+            isRandomized = true;
+        }
+        else
+        {
+            // Restaurer l'état d'origine
+            container.shelves = originalShelves;
+            originalShelves = null;
+
+            // Mettre à jour les boutons d'étagère en fonction des étagères d'origine
+            UpdateShelfButtons();
+
+            isRandomized = false;
+        }
+
+        // Afficher la première étagère après modification
+        DisplayShelf(0);
+    }
+
+    private void UpdateShelfButtons()
+    {
+        for (int i = 0; i < shelfButtons.Length; i++)
+        {
+            if (i < container.shelves.Count && container.shelves[i].items.Count > 0)
+            {
+                // L'étagère existe et contient des ingrédients, afficher le bouton
+                shelfButtons[i].gameObject.SetActive(true);
+            }
+            else
+            {
+                // L'étagère ne contient pas d'ingrédients, masquer le bouton
+                shelfButtons[i].gameObject.SetActive(false);
+            }
+        }
+    }
+
+
     private void AddObjectToShelf()
     {
         if (currentShelf == null)
