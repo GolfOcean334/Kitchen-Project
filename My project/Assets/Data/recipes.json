@@ -7,6 +7,22 @@
                 " UI"
             ],
             "instructions": "wiuydg"
+        },
+        {
+            "title": "Raclette",
+            "ingredients": [
+                "Fromage",
+                "Saucisson"
+            ],
+            "instructions": "Bonne chance"
+        },
+        {
+            "title": "Autre",
+            "ingredients": [
+                "Aubergine",
+                "Steak"
+            ],
+            "instructions": "UI"
         }
     ]
 }
