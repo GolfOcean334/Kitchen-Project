@@ -33,7 +33,7 @@
 Contributions are welcome! Please fork the repository and submit a pull request with your changes.
 
 ### License
-This project is licensed under the Creative Commons Attribution-NonCommercial 4.0 International License. See the [LICENSE](https://github.com/GolfOcean334/Kitchen-Project/blob/main/LICENSE) file for more details.
+This project is licensed under the MIT License. See the [LICENSE](https://github.com/GolfOcean334/Kitchen-Project/blob/main/LICENSE) file for more details.
 
 ---
 
@@ -70,4 +70,4 @@ This project is licensed under the Creative Commons Attribution-NonCommercial 4.
 Les contributions sont les bienvenues ! Veuillez forker le repository et soumettre une pull request avec vos modifications.
 
 ### Licence
-Ce projet est sous la Creative Commons Attribution-NonCommercial 4.0 International License. Voir le fichier [LICENSE](https://github.com/GolfOcean334/Kitchen-Project/blob/main/LICENSE) pour plus de détails.
+Ce projet est sous la license MIT. Voir le fichier [LICENSE](https://github.com/GolfOcean334/Kitchen-Project/blob/main/LICENSE) pour plus de détails.
